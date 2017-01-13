@@ -1,7 +1,7 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <glm/mat4x4.hpp>
-#include <glm/gtc/martix_transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <memory>
 
 #ifndef SRC_CAMERA_H_
