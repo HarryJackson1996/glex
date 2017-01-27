@@ -2,12 +2,14 @@
 #define GAMEWORLD_H
 
 #include <memory>
-
 #include <GL/gl.h>
-
+#include <SDL2/SDL.h>
 #include "common.h"
 #include "GameAssetManager.h"
+#include "Camera.h"
 #include "CubeAsset.h"
+#include "CubeAsset2.h"
+
 
 /**
  * GameWorld allows us to separate the management of the game world from the
@@ -27,6 +29,7 @@ class GameWorld {
    * Calling Draw() will draw the entire world.
    */
   void Draw();
+
  private:
   std::shared_ptr<GameAssetManager> asset_manager;
 };

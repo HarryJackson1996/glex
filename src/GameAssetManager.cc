@@ -1,5 +1,5 @@
 #include "GameAssetManager.h"
-
+#include <exception>
 /**
  * Creates a GameAssetManager to load the correct shaders based on the
  * ApplicationMode.
@@ -21,6 +21,8 @@ GameAssetManager::GameAssetManager(ApplicationMode mode) {
   };
 
   program_token = CreateGLProgram(vertex_shader, fragment_shader);
+
+  camera = std::make_shared<Camera>();
 }
 
 /**
@@ -66,11 +68,71 @@ void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
  * Draws each GameAsset in the scene graph.
  */
 void GameAssetManager::Draw() {
-  for(auto ga: draw_list) {
-    ga->Draw(program_token);
-  }
-}
+	
+SDL_Event event;
+while( SDL_PollEvent(&event)){
+	switch(event.type){
+	case SDL_KEYDOWN:   //Key movements 
+			switch( event.key.keysym.sym ){ 		//switch statement
+				case SDLK_w: case SDLK_UP:		//'up arrow' or 'W'
+					camera->move_PositiveZ(0.35);	//Camera forward in the Z direction
+					break;				//break from case
 
+				case SDLK_s: case SDLK_DOWN:		//'s' or 'down arrow' 
+				        camera->move_NegativeZ(0.35);	//Camera moves backwards in Z direction
+					break;				//break from case
+
+				case SDLK_a: case SDLK_LEFT:		//'a' or 'left arrow'
+					camera->move_PositiveX(0.35);	//Camera moves positive in x direction
+					break;				//break from case
+
+				case SDLK_d: case SDLK_RIGHT:		//'d' or 'right arrow'
+					camera->move_NegativeX(0.35);	//Camera moves negative in x direction
+					break;				//break from case
+
+				case SDLK_BACKSPACE:			//'backspace'
+					camera->move_PositiveY(0.35);	//Camera moves positive in y direction
+					break;				//break from case
+
+				case SDLK_SPACE:			//'space' 
+					camera->move_NegativeY(0.35);	//camera moves negative in y direction
+					break;				//break from case
+
+				case SDLK_r: case SDLK_DELETE:		//Pressing 'r' or 'delete' will reset camera
+					camera->resetView();		//Resets camera position to center of screen
+					break;				//break from case
+				default:	
+					break;				//break 
+				case SDLK_ESCAPE:			//If 'escape' is pressed
+					std::exit(0);			//Exits window
+			}
+				default:
+					break;
+	
+				case SDL_MOUSEMOTION:   
+					if(event.motion.xrel > 0){		
+					camera->move_NegativeX(0.035);	
+				} else if(event.motion.xrel < 0){
+					camera->move_PositiveX(0.035);
+				}
+					if(event.motion.yrel > 0){
+					camera->move_PositiveY(0.025);
+				} else if(event.motion.yrel < 0){
+					camera->move_NegativeY(0.025);
+				}
+					break;
+			}
+		}
+		
+	glm::mat4 a = camera->getViewMatrix();
+	GLuint view_uniform = glGetUniformLocation(program_token, "view");
+	glUniformMatrix4fv(view_uniform, 1, false, glm::value_ptr(a));
+
+	
+	for(auto ga: draw_list) {
+    	ga->Draw(program_token);
+  	}
+}
 /**
  * When given the contents of a vertex shader and fragment shader
  * GameAssetManager::CreateGLProgram will compile and link them.  This

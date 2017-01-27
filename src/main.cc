@@ -8,7 +8,10 @@
 #include <boost/program_options.hpp>
 
 #define RUN_GRAPHICS_DISPLAY 0x00;
-
+#include "Camera.h"
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
+#include <glm/mat4x4.hpp>
 #include "common.h"
 #include "GameWorld.h"
 
@@ -35,7 +38,7 @@ struct SDLWindowDeleter {
 };
 
 void Draw(const std::shared_ptr<SDL_Window> window, const std::shared_ptr<GameWorld> game_world) {
-  glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
   game_world->Draw();
@@ -138,7 +141,7 @@ ApplicationMode ParseOptions (int argc, char ** argv) {
 }
 
 int main(int argc, char ** argv) {
-  Uint32 delay = 1000/60; // in milliseconds
+  Uint32 delay = 1000/900; // in milliseconds = changed 60 - 900 smoother
 
   auto mode = ParseOptions(argc, argv);
   auto window = InitWorld();
@@ -160,9 +163,8 @@ int main(int argc, char ** argv) {
     case SDL_USEREVENT:
       Draw(window, game_world);
 
-      break;
-    default:
-      break;
-    }
-  }
+
+
+}
+}
 }

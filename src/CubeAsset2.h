@@ -1,5 +1,5 @@
-#ifndef CUBEASSET_H
-#define CUBEASSET_H
+#ifndef CUBEASSET2_H
+#define CUBEASSET2_H
 
 #include <vector>
 
@@ -9,10 +9,10 @@
 
 #include "GameAsset.h"
 
-class CubeAsset : public GameAsset {
+class CubeAsset2 : public GameAsset {
  public:
-  CubeAsset();
-  ~CubeAsset();
+  CubeAsset2();
+  ~CubeAsset2();
   virtual void Draw(GLuint);
 
 
@@ -22,4 +22,4 @@ class CubeAsset : public GameAsset {
   GLuint vertex_buffer_token, element_buffer_token;
 };
 
-#endif // CUBEASSET_H
+#endif // CUBEASSET2_H

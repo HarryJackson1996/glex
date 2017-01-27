@@ -1,20 +1,20 @@
-#include "CubeAsset.h"
+#include "CubeAsset2.h"
 
-CubeAsset::CubeAsset() {
+CubeAsset2::CubeAsset2() {
   // model coordinates, origin at centre.
   GLfloat vertex_buffer [] {
 
 		  //Front
-  	-0.5, -0.5, 0.5,
-	-0.5,  0.5, 0.5,
-	 0.5, -0.5, 0.5,
-	 0.5,  0.5, 0.5,
+  	-0.5, -0.5, 1.5,
+	-0.5,  0.5, 1.5,
+	 0.5, -0.5, 1.5,
+	 0.5,  0.5, 1.5,
 
 	      //Back
-	-0.5, -0.5, -0.5,
-	-0.5,  0.5, -0.5,
-	 0.5, -0.5, -0.5,
-	 0.5,  0.5, -0.5,
+	-0.5, -0.5, 2.5,
+	-0.5,  0.5, 2.5,
+	 0.5, -0.5, 2.5,
+	 0.5,  0.5, 2.5,
 
   };
 
@@ -49,7 +49,7 @@ CubeAsset::CubeAsset() {
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * element_buffer_length, element_buffer, GL_STATIC_DRAW);
 }
 
-CubeAsset::~CubeAsset() {
+CubeAsset2::~CubeAsset2() {
 }
 
 #ifdef DEBUG
@@ -59,15 +59,8 @@ CubeAsset::~CubeAsset() {
 #define checkGLError()
 #endif
 
-void checkError(std::string file, int line) {
-  GLenum gl_error = glGetError();
-  if(GL_NO_ERROR != gl_error) {
-    std::cerr << "GL error in " << file << " at line " << line << " error: " << gl_error << std::endl;
-    exit(-1);
-  }
-}
 
-void CubeAsset::Draw(GLuint program_token) {
+void CubeAsset2::Draw(GLuint program_token) {
   if(!glIsProgram(program_token)) {
     std::cerr << "Drawing Cube with invalid program" << std::endl;
     return;
