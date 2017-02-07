@@ -8,7 +8,7 @@
 #include "GameAssetManager.h"
 #include "Camera.h"
 #include "CubeAsset.h"
-#include "CubeAsset2.h"
+
 
 
 /**

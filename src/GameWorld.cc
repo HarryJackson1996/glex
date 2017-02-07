@@ -2,7 +2,6 @@
 
 
 GameWorld::GameWorld (ApplicationMode mode) : asset_manager(std::make_shared<GameAssetManager>(mode)) {
-  asset_manager->AddAsset(std::make_shared<CubeAsset2>());
   asset_manager->AddAsset(std::make_shared<CubeAsset>());
 }
 
