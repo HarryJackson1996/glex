@@ -90,6 +90,11 @@ void CubeAsset::Draw(GLuint program_token) {
     exit(-1);
   }
 
+  GLuint model_uniform = glGetUniformLocation(program_token, "model");
+  glm::mat4 model_matrix(1.0);
+
+  glUniformMatrix4fv(model_uniform, 1,  GL_FALSE, glm::value_ptr(model_matrix));
+
   GLuint position_attrib = glGetAttribLocation(program_token, "position");
   checkGLError();
 
