@@ -10,7 +10,7 @@ AC_LANG(C++)
 
 BOOST_REQUIRE
 BOOST_PROGRAM_OPTIONS
-
+BOOST_TEST
 
 AC_CHECK_HEADER([glm/glm.hpp], , AC_MSG_ERROR(GLM headers are required. Please see INSTALL))
 

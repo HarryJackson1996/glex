@@ -5,7 +5,8 @@ shaderexample_SOURCES = main.cc GameWorld.cc GameAssetManager.cc Camera.cc CubeA
 
 TESTS = TestApp
 check_PROGRAMS = $(TESTS)
-TestApp_SOURCES = CollidesTrue.cc CollidesFalse.cc
+TestApp_SOURCES = hello.cpp
+TestApp_LDADD = $(BOOST_UNIT_TEST_FRAMEWORK_LIBS)
 
 AM_CPPFLAGS = -DGL_GLEXT_PROTOTYPES -DGL3_PROTOTYPES
 AM_CPPFLAGS += -std=c++11
