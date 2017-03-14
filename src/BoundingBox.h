@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#include "SFMath.h"
+#include "Math.h"
 #include "GameAsset.h"
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
@@ -13,8 +13,11 @@ using namespace std;
 #include <utility>
 #include <ostream>
 
-enum AXIS {X, Y, Z};  			
-
+enum AXIS {X, Y, Z};  	
+		
+static glm::vec3 HalfX = glm::vec3(1.0, 0.0, 0.0);
+static glm::vec3 HalfY = glm::vec3(0.0, 1.0, 0.0);
+static glm::vec3 HalfZ = glm::vec3(0.0, 0.0, 1.0);
 
 class BoundingBox : public GameAsset {
  
@@ -27,16 +30,15 @@ public:
 	virtual ~BoundingBox();
 	
 	void SetCentre(Vector3 &);
-	\bool CollidesWith(const shared_ptr<BoundingBox>);
+	bool CollidesWith(const shared_ptr<BoundingBox> & b);
 
-	glm::vec3 HalfX = glm::vec3(1.0, 0.0, 0.0);
-	glm::vec3 HalfY = glm::vec3(0.0, 1.0, 0.0);
-	glm::vec3 HalfZ = glm::vec3(0.0, 0.0, 1.0);
 
 private:
 	shared_ptr<Vector3> centre, extent_x, extent_y, extent_z;
+	pair<float,float> projectOntoAxis(const BoundingBox &, enum AXIS);	
+	
+	glm:: vec3 hx, hy, hz;
 
-	pair<float,float> projectOntoAxis(const BoundingBox &, enum AXIS);
 
 };
 

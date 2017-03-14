@@ -43,16 +43,16 @@ float lo, hi;
     break;
   case Y:
     {
-      Vector2 by = *b.y;
-      lo  = projection( Point2(Vector2(*(b.centre)) + (by * -1)), HalfY());
-      hi  = projection( Point2(Vector2(*(b.centre)) + by), HalfY());
+      Vector3 by = *b.y;
+      lo  = projection( Point3(Vector3(*(b.centre)) + (by * -1)), HalfY());
+      hi  = projection( Point3(Vector3(*(b.centre)) + by), HalfY());
     }
     break;
   case Z:
     {
       Vector3 bz = *b.z;
-      lo  = projection( Point2(Vector2(*(b.centre)) + (bz * -1)), HalfZ());
-      hi  = projection( Point2(Vector2(*(b.centre)) + bz), HalfZ());
+      lo  = projection( Point3(Vector3(*(b.centre)) + (bz * -1)), HalfZ());
+      hi  = projection( Point3(Vector3(*(b.centre)) + bz), HalfZ());
     }
     break;
   }
@@ -60,7 +60,10 @@ float lo, hi;
   return make_pair(lo, hi);
 }
 
+BoundingBox::CollidesWith(const shared_ptr<BoundingBox> b){
 
-//implement BoundingBox::CollidesWith
+
+
+}
 
 
