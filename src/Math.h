@@ -1,69 +1,111 @@
-#include "BoundingBox.h"
+#ifndef MATH_H
+#define MATH_H
 
-BoundingBox::BoundingBox(const Vector3 centre, const float width, const float height, const float depth) {
-centre(make_shared<Vector3>(centre)),
-extent_x(make_shared<Vector3>(Vector3(width/2.0, 0.0, 0.0))),
-extent_y(make_shared<Vector3>(Vector3(0.0, height/2.0, 0.0))),
-extent_z(make_shared<Vector3>(Vector3(0.0, 0.0, depth/2.0))) {
+/**
+ * A Vector representation somewhat in the style of the IBM/Sony Vectormath library.
+ */
+class Vector3 {
+public:
+  inline Vector3(const float, const float, const float);
+  inline Vector3(const Vector3 &);
+  inline const float getX() const;
+  inline const float getY() const;
+  inline const float getZ() const;
 
+  inline const Vector3 operator +( const Vector3 &) const;
+  inline const Vector3 operator *( float) const;
+
+private:
+  float m_x, m_y, m_z;
+};
+
+inline Vector3::Vector3 (const float x, const float y, const float z) : m_x(x), m_y(y), m_z(z) {}
+
+inline Vector3::Vector3 (const Vector3 &v) : m_x(v.m_x), m_y(v.m_y), m_z(v.m_z)  {}
+
+inline const float Vector3::getX() const {
+  return m_x;
 }
 
-SFBoundingBox::~SFBoundingBox() {
-  centre.reset();
-  extent_x.reset();
-  extent_y.reset();
-  extent_z.reset();
+inline const float Vector3::getY() const {
+  return m_y;
 }
 
-void BoundingBox::SetCentre(Vector3 & v) {
-  centre = make_shared<Vector3>(v);
+inline const float Vector3::getZ() const {
+  return m_z;
 }
 
-bool straddles(const pair<float, float> & a, const pair<float, float> & b) {
-  if((a.first >= b.first && a.first <= b.second)
-     || (a.second >= b.first && a.second <= b.second))
-    {
-      return true;
-    }
-return false;
+inline const Vector3 Vector3::operator +( const Vector3 & vec ) const {
+  return Vector3(
+		 m_x + vec.m_x,
+		 m_y + vec.m_y,
+		 m_z + vec.m_z
+		 );
+}
+
+inline const Vector3 Vector3::operator *( float scalar ) const {
+  return Vector3(
+		 m_x * scalar,
+		 m_y * scalar,
+		 m_z * scalar
+		 );
+}
+
+/**
+ * A Point representation somewhat in the style of the IBM/Sony Vectormath library.
+ */
+class Point3 {
+public:
+  inline Point3(const float, const float, const float);
+  inline Point3(const Vector3 &);
+  inline Point3(const Point3 &);
+  inline const float getX() const;
+  inline const float getY() const;
+  inline const float getZ() const;
+private:
+  float m_x, m_y, m_z;
+};
+
+inline Point3::Point3 (const float x, const float y, const float z) : m_x(x), m_y(y), m_z(z) {}
+
+inline Point3::Point3 (const Vector3 & v) : m_x(v.getX()), m_y(v.getY()), m_z(v.getZ()) {}
+
+inline Point3::Point3 (const Point3 & p) : m_x(p.m_x), m_y(p.m_y), m_z(p.m_z) {}
+
+inline const float Point3::getX() const {
+  return m_x;
+}
+
+inline const float Point3::getY() const {
+  return m_y;
+}
+
+inline const float Point3::getZ() const {
+  return m_z;
+}
+/*
+ * Useful functions
+ */
+
+inline static float projection( const Point3 & pnt, const Vector3 & unitVec ) {
+  float result;
+  result =  ( pnt.getX() * unitVec.getX() );
+  result += ( pnt.getY() * unitVec.getY() );
+  result += ( pnt.getZ() * unitVec.getZ() );
+  return result;
+}
+
+static const Vector3 xAxis() {
+  return Vector3(1.0f, 0.0f, 0.0f);
+}
+
+static const Vector3 yAxis() {
+  return Vector3(0.0f, 1.0f, 0.0f);
+}
+
+static const Vector3 zAxis() {
+  return Vector3(0.0f, 0.0f, 1.0f);
 }
 
 
-pair<float,float> BoundingBox::projectOntoAxis(const BoundingBox & b, enum AXIS axis) {
-  
-float lo, hi;
-
-  switch (axis) {
-  case X:
-    {
-      Vector3 bx = *b.x;
-      lo  = projection( Point3(Vector3(*(b.centre)) + (bx * -1)), HalfX());
-      hi  = projection( Point3(Vector3(*(b.centre)) + bx), HalfX());
-    }
-    break;
-  case Y:
-    {
-      Vector3 by = *b.y;
-      lo  = projection( Point3(Vector3(*(b.centre)) + (by * -1)), HalfY());
-      hi  = projection( Point3(Vector3(*(b.centre)) + by), HalfY());
-    }
-    break;
-  case Z:
-    {
-      Vector3 bz = *b.z;
-      lo  = projection( Point3(Vector3(*(b.centre)) + (bz * -1)), HalfZ());
-      hi  = projection( Point3(Vector3(*(b.centre)) + bz), HalfZ());
-    }
-    break;
-  }
-
-  return make_pair(lo, hi);
-}
-
-BoundingBox::CollidesWith(const shared_ptr<BoundingBox> b){
-
-
-
-}
-
-
+#endif
