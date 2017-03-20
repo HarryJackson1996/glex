@@ -29,9 +29,9 @@ class BoundingBox {
 public:
   
   BoundingBox(const Vector3, 
-	      const int, 
-	      const int, 
-	      const int);
+	      const float, 
+	      const float, 
+	      const float);
 
   virtual ~BoundingBox();
 

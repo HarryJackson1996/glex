@@ -1,13 +1,13 @@
 #include "BoundingBox.h"
 
 BoundingBox::BoundingBox(const Vector3 centre,
-			     const int width,
-			     const int height,
-			     const int depth) :
+			     const float width,
+			     const float height,
+			     const float depth) :
   centre(make_shared<Vector3>(centre)),
-  extent_x(make_shared<Vector3>(Vector3((float) width/2.0, 0, 0))),
-  extent_y(make_shared<Vector3>(Vector3(0,(float) height/2.0, 0))),
-  extent_z(make_shared<Vector3>(Vector3(0, 0, (float) depth/2.0))){
+  extent_x(make_shared<Vector3>(Vector3((float) width/2.0, 0.0f, 0.0f))),
+  extent_y(make_shared<Vector3>(Vector3(0.0f,(float) height/2.0, 0.0f))),
+  extent_z(make_shared<Vector3>(Vector3(0.0f, 0.0f, (float) depth/2.0))){
 }
 
 BoundingBox::~BoundingBox() {
@@ -20,8 +20,6 @@ BoundingBox::~BoundingBox() {
 void BoundingBox::SetCentre(Vector3 & v) {
   centre = make_shared<Vector3>(v);
 }
-//dont we need first, second and third checks for axis alligned bounding
-//box because we need to make checks on all 3 axis?
 
 bool straddles(const pair<float, float> & a, const pair<float, float> & b) {
   return (a.first >= b.first && a.first <= b.second)  // a1 intersects b
@@ -63,11 +61,13 @@ pair<float,float> BoundingBox::projectOntoAxis(const BoundingBox & b, enum AXIS 
 bool BoundingBox::CollidesWith(const shared_ptr<BoundingBox> b) {
   pair<float, float> a_x_proj = projectOntoAxis(*this, X),
     a_y_proj = projectOntoAxis(*this, Y),
-    b_x_proj = projectOntoAxis(*b, X),
-    b_y_proj = projectOntoAxis(*b, Y);
-	
+    a_z_proj = projectOntoAxis(*this, Z),
+    b_y_proj = projectOntoAxis(*b, Y),
+    b_z_proj = projectOntoAxis(*b, Z),
+    b_x_proj = projectOntoAxis(*b, X);
 
-  return (straddles(a_x_proj, b_x_proj)) && (straddles(a_y_proj, b_y_proj));
+
+ return (straddles(a_x_proj, b_x_proj)) && (straddles(a_y_proj, b_y_proj)) && (straddles(a_z_proj, b_z_proj));
 }
 
 ostream& operator<<(ostream& os, const BoundingBox& obj) {
