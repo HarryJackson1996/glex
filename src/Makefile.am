@@ -1,7 +1,14 @@
 EXTRA_DIST = GameWorld.h GameAssetManager.h GameAsset.h CubeAsset.h Camera.h BoundingBox.h Math.h
 
 bin_PROGRAMS = shaderexample
-shaderexample_SOURCES = main.cc GameWorld.cc GameAssetManager.cc Camera.cc CubeAsset.cc  BoundingBox.cc
+shaderexample_SOURCES = main.cc
+shaderexample_LDADD = libhydra.la
+
+
+lib_LTLIBRARIES = libhydra.la
+libhydra_la_SOURCES = GameWorld.h GameAssetManager.h GameAsset.h CubeAsset.h Camera.h BoundingBox.h Math.h
+libhydra_la_LDFLAGS = -version-info 0:1
+
 
 TESTS = TestApp
 check_PROGRAMS = $(TESTS)
