@@ -15,7 +15,7 @@ LIBS += $(gl_LIBS) $(glew_LIBS) $(sdl2_LIBS) $(BOOST_THREAD_LIBS) $(BOOST_PROGRA
 
 TESTS = TestApp
 check_PROGRAMS = $(TESTS)
-TestApp_SOURCES = TestBoundingBox.cc
+TestApp_SOURCES = TestBoundingBox.cpp
 TestApp_LDADD = $(BOOST_UNIT_TEST_FRAMEWORK_LIBS)
 
 
