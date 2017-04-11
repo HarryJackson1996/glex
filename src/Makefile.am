@@ -1,11 +1,11 @@
-EXTRA_DIST = GameWorld.h GameAssetManager.h GameAsset.h CubeAsset.h Camera.h BoundingBox.h Math.h
+EXTRA_DIST = GameWorld.h GameAssetManager.h CubeAsset.h Camera.h BoundingBox.h Math.h
 
 bin_PROGRAMS = shaderexample
 shaderexample_SOURCES = main.cc
 shaderexample_LDADD = libhydra.la
 
 lib_LTLIBRARIES = libhydra.la
-libhydra_la_SOURCES = GameWorld.cc GameAssetManager.cc GameAsset.cc CubeAsset.cc Camera.cc BoundingBox.cc
+libhydra_la_SOURCES = GameWorld.cc GameAssetManager.cc CubeAsset.cc Camera.cc BoundingBox.cc
 libhydra_la_LDFLAGS = -version-info 0:1
 
 AM_CPPFLAGS = -DGL_GLEXT_PROTOTYPES -DGL3_PROTOTYPES
