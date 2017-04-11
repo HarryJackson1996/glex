@@ -25,6 +25,14 @@ BOOST_AUTO_TEST_CASE(CollidesTrue)
 	BOOST_CHECK(b2->CollidesWith(b1));
 }
 
+BOOST_AUTO_TEST_CASE(CollidesFalse)
+{
+	auto b1 = make_shared<BoundingBox>(BoundingBox(Vector3(0.0f, 0.0f, 0.0f), 0.5f, 0.5f, 0.5f));
+	auto b2 = make_shared<BoundingBox>(BoundingBox(Vector3(0.41f, 0.41f, 0.41f), 0.5f, 0.5f, 0.5f));
+	BOOST_CHECK(!b1->CollidesWith(b2));
+	BOOST_CHECK(!b2->CollidesWith(b1));
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 
