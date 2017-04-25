@@ -4,7 +4,13 @@ bin_PROGRAMS = shaderexample
 shaderexample_SOURCES = main.cc
 shaderexample_LDADD = libhydra.la
 
-lib_LTLIBRARIES = libhydra.la
+lib_LTLIBRARIES = libpyhydra.la
+libpyhydra_la_SOURCES = pyCubeAsset.cc
+libpyhydra_la_LDFLAGS = -version-info 0:1
+libpyhydra_la_LIBADD = libhydra.la -lboost_python -lpython3.5m
+libpyhydra_la_CPPFLAGS = -I/usr/include/python3.5m
+
+lib_LTLIBRARIES += libhydra.la
 libhydra_la_SOURCES = GameWorld.cc GameAssetManager.cc CubeAsset.cc Camera.cc BoundingBox.cc
 libhydra_la_LDFLAGS = -version-info 0:1
 

@@ -34,6 +34,8 @@ CubeAsset::CubeAsset() {
 	2,3,6, 3,7,6,  //Right
   };
 
+
+
   // Transfer buffers to the GPU
   //
 
@@ -128,6 +130,5 @@ void CubeAsset::Draw(GLuint program_token) {
 
   glDisableVertexAttribArray(position_attrib);
 }
-
 
 
