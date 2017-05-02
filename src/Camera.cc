@@ -11,10 +11,11 @@ Camera::Camera(){
              glm::vec4(1.0, 0.0, 0.0, 0.0),
              glm::vec4(0.0, 1.0, 0.0, 0.0),
              glm::vec4(0.0, 0.0, 1.0, 0.0),
-             glm::vec4(-2.0, 0.0, 0.0, 1.0)
+             glm::vec4(0.0, 0.0, 0.0, 1.0)
            );
 	view = view;
-	std::cout<<glm::to_string(view)<<std::endl;
+	std::cout<< "Camera Position: " <<glm::to_string(view[3])<<std::endl;
+	std::cout<< endl;
 }
 
 Camera::~Camera(){
@@ -29,7 +30,9 @@ void Camera::move_PositiveX (float x){		//matrix for moving +x
 		glm::vec4(x, 0.0, 0.0, 1.0)
 	);
 	view = a * view;
-	std::cout<<glm::to_string(view)<<std::endl;
+	std::cout<< "Camera Position: " <<glm::to_string(view[3])<<std::endl;
+	std::cout<< endl;
+	std::cout << "Camera moved:" << endl << "x = " << a[3][0] << endl << "y = " << a[3][1] << endl << "z = "<< a[3][2] << endl << std::endl;
 }
 
 void Camera::move_NegativeX (float x){		//matrix for moving -x
@@ -40,7 +43,9 @@ void Camera::move_NegativeX (float x){		//matrix for moving -x
 		glm::vec4(-x, 0.0, 0.0, 1.0)
 	);
 	view = a * view;
-	std::cout<<glm::to_string(view)<<std::endl;
+	std::cout<< "Camera Position: " <<glm::to_string(view[3])<<std::endl;
+	std::cout<< endl;
+	std::cout << "Camera moved:" << endl << "x = " << a[3][0] << endl << "y = " << a[3][1] << endl << "z = "<< a[3][2] << endl << std::endl;
 }
 
 void Camera::move_PositiveZ (float z){		//matrix for moving +z
@@ -51,7 +56,9 @@ void Camera::move_PositiveZ (float z){		//matrix for moving +z
 		glm::vec4(0.0, 0.0, z, 1.0)
 	);
 	view = a * view;
-	std::cout<<glm::to_string(view)<<std::endl;
+	std::cout<< "Camera Position: " <<glm::to_string(view[3])<<std::endl;
+	std::cout<< endl;
+	std::cout << "Camera moved:" << endl << "x = " << a[3][0] << endl << "y = " << a[3][1] << endl << "z = "<< a[3][2] << endl << std::endl;
 }
 
 void Camera::move_NegativeZ (float z){		//matrix for moving -z
@@ -62,7 +69,9 @@ void Camera::move_NegativeZ (float z){		//matrix for moving -z
 		glm::vec4(0.0, 0.0, -z, 1.0)
 	);
 	view = a * view;
-	std::cout<<glm::to_string(view)<<std::endl;
+	std::cout<< "Camera Position: " <<glm::to_string(view[3])<<std::endl;
+	std::cout<< endl;
+	std::cout << "Camera moved:" << endl << "x = " << a[3][0] << endl << "y = " << a[3][1] << endl << "z = "<< a[3][2] << endl << std::endl;
 }
 
 void Camera::move_PositiveY (float y){		//matrix for moving +y
@@ -73,7 +82,9 @@ void Camera::move_PositiveY (float y){		//matrix for moving +y
 		glm::vec4(0.0, y, 0.0, 1.0)
 	);
 	view = a * view;
-	std::cout<<glm::to_string(view)<<std::endl;
+	std::cout<< "Camera Position: " <<glm::to_string(view[3])<<std::endl;
+	std::cout<< endl;
+	std::cout << "Camera moved:" << endl << "x = " << a[3][0] << endl << "y = " << a[3][1] << endl << "z = "<< a[3][2] << endl << std::endl;;
 }
 
 void Camera::move_NegativeY (float y){		//matrix for movning -y
@@ -84,7 +95,9 @@ void Camera::move_NegativeY (float y){		//matrix for movning -y
 		glm::vec4(0.0, -y, 0.0, 1.0)
 	);
 	view = a * view;
-	std::cout<<glm::to_string(view)<<std::endl;
+	std::cout<< "Camera Position: " <<glm::to_string(view[3])<<std::endl;
+	std::cout<< endl;
+	std::cout << "Camera moved:" << endl << "x = " << a[3][0] << endl << "y = " << a[3][1] << endl << "z = "<< a[3][2] << endl << std::endl;
 }
 
 void Camera::resetView() {				//reset view;
@@ -92,13 +105,13 @@ void Camera::resetView() {				//reset view;
 		glm::vec4(1.0, 0.0, 0.0, 0.0),
     		glm::vec4(0.0, 1.0, 0.0, 0.0),
 		glm::vec4(0.0, 0.0, 1.0, 0.0),
-		glm::vec4(-2.0, 0.0, 0.0, 1.0)
+		glm::vec4(0.0, 0.0, 0.0, 1.0)
 	);
 	view = newView;
-	std::cout<<glm::to_string(newView)<<std::endl;
+
+	std::cout<< "Camera Position: " <<glm::to_string(view[3])<<std::endl;
+	std::cout<< endl;
 }
-
-
 
 glm::mat4 Camera::getViewMatrix(){
 	return view;

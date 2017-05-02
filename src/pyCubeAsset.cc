@@ -1,10 +1,12 @@
 #include <boost/python.hpp>
 #include "CubeAsset.h"
 #include "Camera.h"
+#include "BoundingBox.h"
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <glm/mat4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
 using namespace boost::python;
 
 BOOST_PYTHON_MODULE(libpyhydra)
@@ -21,5 +23,6 @@ BOOST_PYTHON_MODULE(libpyhydra)
 	 .def("move_NegativeZ", &Camera::move_NegativeZ)
 	 .def("reset_View", &Camera::resetView)
     ;
+
 
 }
