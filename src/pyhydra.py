@@ -1,7 +1,5 @@
 import libpyhydra
 
-print("Imported!!!")
+newCube = libpyhydra.CubeAsset()
 
-ca = libpyhydra.CubeAsset()
-
-print("Assety!!")
+newCamera = libpyhydra.Camera()
