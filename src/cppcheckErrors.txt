@@ -1,0 +1,20 @@
+[Camera.cc:118]: (style) Statements following return, break, continue, goto or throw will never be executed.
+
+[CubeAsset.cc:64]: (performance) Function parameter 'file' should be passed by reference.
+
+[GameAssetManager.h:27]: (style) 'GameAssetManager::operator=' should return 'GameAssetManager &'.
+
+[GameWorld.h:26]: (style) Class 'GameWorld' has a constructor with 1 argument that is not explicit.
+
+[Math.h:60]: (style) Class 'Point3' has a constructor with 1 argument that is not explicit.
+
+[BoundingBox.cc:3]: (performance) Function parameter 'centre' should be passed by reference.
+
+[main.cc:40]: (performance) Function parameter 'window' should be passed by reference.
+[main.cc:40]: (performance) Function parameter 'game_world' should be passed by reference.
+(information) Cppcheck cannot find all the include files (use --check-config for details)
+
+
+~~~~~ This is what was typed into the terminal while using cppcheck ~~~~~~
+[harry@localhost src]$ cppcheck --enable=all CubeAsset.cc Camera.cc GameAssetManager.cc GameWorld.cc main.cc puCubeAsset.cc TestBoundingBox.cpp 2>cppcheckErrors.txt
+
