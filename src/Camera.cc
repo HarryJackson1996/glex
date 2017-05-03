@@ -5,9 +5,33 @@
 
 using namespace std;
 
+/*View matrix - position of camera
+- Set view;
+- Prints out the position of the camera in the terminal when running src/shaderexample even if the screen is black as model view not correctly 	     implemented.
+- Prints out the position of the newCamera in the python interpreter 
+- I have exposed the camera and its relative functions in the pyCubeAsset.cc
+- If you create a newCamera in the python interpreter it will print the position of the new camera (0.0, 0.0, 0.0, 1.0)
+- prints a line
+- If you were to go into the python interpreter and make a newCamera by doing NewCamera = libpyhydra.Camera()
+- The result you would get is "Camera Position: vec4(0.000000, 0.000000, 0.000000, 1.000000)"
+- As the move functions have also been exposed you can also move the new camera.
+- For example, if you type NewCamera.move_PositiveX(10)
+- The result would print 
+
+Camera Position: vec4(10.000000, 0.000000, 0.000000, 1.000000)
+
+Camera moved:
+x = 10
+y = 0
+z = 0
+
+- As you can see the difference in the new camera's x position is +10 units.
+- And it then prints which direction the camera has moved in and by how many units ( x = +10)
+- You can also reset the view.
+*/
 
 Camera::Camera(){
-	view = glm::mat4(			//view matrix
+	view = glm::mat4(			
              glm::vec4(1.0, 0.0, 0.0, 0.0),
              glm::vec4(0.0, 1.0, 0.0, 0.0),
              glm::vec4(0.0, 0.0, 1.0, 0.0),

@@ -11,6 +11,22 @@ using namespace std;
 #include "BoundingBox.h"
 #include "BoundingBox.cc"
 
+
+/*
+- Made two test cases one called collidesTrue and CollidesFalse
+- When running "make check" the result returned will be true.
+- This is because i have set b1 and b2's boundingbox to overlap in the X,Y and Z axis.
+- However in order to actually test if the collision works I had to test each axis individually.
+- To do this I set first the x position of the boundingbox to 0.51, this meant that both the Y and Z axis overlapped however not the X.
+- The result returned false (correct).
+- Then I set the Y position of the boundingbox to 0.51, returned the X to 0.41. This meant that both the X and Z axis overlapped however not the Y.
+- The result returned false (correct).
+- Finally I set the Z position of the boundingbox to 0.51, returned the Y to 0.41. This meant that both the X and Y axis overlapped however not the Z.
+- The result returned false (correct).
+- These 3 results provided with me the proof the my Collision worked even if not implemented.
+*/
+
+
 BOOST_AUTO_TEST_SUITE( TestBoundingBox );
 
 

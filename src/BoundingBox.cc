@@ -1,5 +1,16 @@
 #include "BoundingBox.h"
 
+
+/* 
+- For the BoundingBox I used collision from starship fontana as a base.
+- Starship Fontana already implemented a 2d axis aligned bounding box.
+- I changed the vector2's to vector3's as we needed to implement the Z axis collision detection.
+- Changed the const int's into floats as from my research it suggested that floats are more precise for 3d collision detection
+- I was not able to implement my collision into my game as I had not fully completed the first semester coursework and therefore had not finished the 	implementation of the model view.
+- To test if my collision worked a wrote a boost test.
+- This is called testBoundingBox.cpp.
+*/
+
 BoundingBox::BoundingBox(const Vector3 centre,
 			     const float width,
 			     const float height,
