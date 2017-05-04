@@ -39,7 +39,7 @@ public:
 
 private:
  
- const shared_ptr<Vector3> centre, extent_x, extent_y, extent_z;
+ shared_ptr<Vector3> centre, extent_x, extent_y, extent_z;
  pair<float,float> projectOntoAxis(const BoundingBox &, enum AXIS);
 
  friend ostream& operator<<(ostream &, const BoundingBox &);
