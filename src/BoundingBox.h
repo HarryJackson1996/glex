@@ -10,7 +10,7 @@
 #include <memory>
 #include <utility>
 #include <ostream>
-
+#include <string.h>
 using namespace std;
 
 
@@ -35,7 +35,7 @@ public:
   virtual ~BoundingBox();
 
   void SetCentre(Vector3 &);
-  bool CollidesWith(shared_ptr<BoundingBox>);
+  bool CollidesWith(std::shared_ptr<BoundingBox>);
 
 private:
  
