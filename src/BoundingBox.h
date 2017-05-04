@@ -35,11 +35,11 @@ public:
   virtual ~BoundingBox();
 
   void SetCentre(Vector3 &);
-  bool CollidesWith(const shared_ptr<BoundingBox>);
+  bool CollidesWith(shared_ptr<BoundingBox>);
 
 private:
  
- shared_ptr<Vector3> centre, extent_x, extent_y, extent_z;
+ const shared_ptr<Vector3> centre, extent_x, extent_y, extent_z;
  pair<float,float> projectOntoAxis(const BoundingBox &, enum AXIS);
 
  friend ostream& operator<<(ostream &, const BoundingBox &);
